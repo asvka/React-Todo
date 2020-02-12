@@ -5,11 +5,10 @@ const TodoList = props => {
     console.log('TodoList: ', props);
     return(
         <div className='todo-list'>
-            {props.todo.map(task => (
+            {props.todos.map(todo => (
                 <Todo
-                key={task.id}
-                task={task.task}
-                completed={task.completed}
+                key={todo.id}
+                todo={todo}
                 />
             ))}
             <button> Test Button</button>
