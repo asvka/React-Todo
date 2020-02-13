@@ -4,8 +4,9 @@ const Todo = props => {
     console.log(props);
 
     return (
-        <div>
-            <p>{props.todo.task}</p>
+        <div
+        onClick={props.toggleTaskComplete}>
+            {props.todo.task}
         </div>
     )
 };

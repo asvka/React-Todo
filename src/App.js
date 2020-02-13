@@ -23,7 +23,7 @@ class App extends React.Component {
           completed: false
         },
         {
-          task: 'Check emails and current purchase orders',
+          task: 'Check emails and open purchase orders',
           id: Date.now(),
           completed: false
         },
@@ -38,10 +38,10 @@ class App extends React.Component {
           completed: false
         }
       ],
-      todo: ''
+      // todo: ''
     };
   }
-  addTask = (e, task) => {
+  addTask = e => {
     e.preventDefault();
 
     const newTask = {
@@ -55,16 +55,47 @@ class App extends React.Component {
     });
   }
 
+  handleChanges = e => {
+        this.setState({ [e.target.name]: e.target.value});
+    };
+
+  toggleTaskComplete = id => {
+    console.log(id);
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (id === todo.id){
+          todo.completed = !todo.completed;
+          return todo;
+        } else {
+          return todo;
+        }
+      })
+    })
+  }
+
+  clearCompleted = e => {
+    e.preventDefault();
+    console.log(this.state.todo);
+    this.setState({
+      todos: this.state.todo.filter(task => task.completed === false)
+    });
+    console.log(this.state.todo)
+  }
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <div>
-          <TodoForm addTask={this.addTask} />
+          <TodoForm
+          addTask={this.addTask}
+          handleChange={this.handleChanges}
+          value={this.state.todo} />
         </div>
         <div>
-          <TodoList 
+          <TodoList
             todos={this.state.todos}
+            toggleTaskComplete={this.toggleTaskComplete}
           />
         </div>
 

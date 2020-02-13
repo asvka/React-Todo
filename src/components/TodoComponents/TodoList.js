@@ -11,7 +11,6 @@ const TodoList = props => {
                 todo={todo}
                 />
             ))}
-            <button> Test Button</button>
         </div>
     )
 }
